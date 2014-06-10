@@ -23,6 +23,7 @@ class SVPExtension extends Twig_Extension {
     {
         return array(
             'svp_thumbnail' => new Twig_Filter_Method($this, 'videoThumbnail'),
+            'svp_has_thumbnail' => new Twig_Filter_Method($this, 'hasThumbnail'),
         );
     }
 
@@ -44,6 +45,20 @@ class SVPExtension extends Twig_Extension {
                 return null;
                 // '<!-- ' . $e->getMessage() . ' -->';
             }
+        }
+    }
+
+    public function hasThumbnail($url)
+    {
+        $video = SVP::getInstance($url);
+
+        try {
+            $video->thumbnail();
+            return true;
+        }
+        catch(Exception $e)
+        {
+            return false;
         }
     }
 }
