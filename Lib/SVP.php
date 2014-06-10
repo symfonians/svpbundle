@@ -14,7 +14,7 @@ class SVP
      * @param array $params
      * @return SVPVideo|SVPVideoYoutube|SVPVideoFacebook|SVPVideoVimeo|SVPVideoDailymotion
      */
-    public static function getInstance($url, $params = array())
+    public static function getInstance($url, $width = null, $height = null)
     {
         if (strpos($url, 'youtu') !== false) {
             /** @var SVPVideoYoutube $instance */
@@ -29,10 +29,12 @@ class SVP
             $instance = new SVPVideo($url);
         }
 
-        if (isset($params['width'])) $instance->setWidth($params['width']);
-        if (isset($params['height'])) $instance->setHeight($params['height']);
-        if (isset($params['modestbranding'])) $instance->setModestBranding(true);
-        if (isset($params['wmode'])) $instance->setWmode($params['wmode']);
+        if($width) { $instance->setWidth($width); }
+        if($height) { $instance->setHeight($height); }
+//        if (isset($params['width'])) $instance->setWidth($params['width']);
+//        if (isset($params['height'])) $instance->setHeight($params['height']);
+//        if (isset($params['modestbranding'])) $instance->setModestBranding(true);
+//        if (isset($params['wmode'])) $instance->setWmode($params['wmode']);
 
         return $instance;
     }

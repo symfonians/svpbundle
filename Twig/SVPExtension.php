@@ -26,7 +26,7 @@ class SVPExtension extends Twig_Extension {
         );
     }
 
-    public function videoThumbnail($url, $default_thumbnail = null)
+    public function videoThumbnail($url, $default_thumbnail = null, $width = null, $height = null)
     {
         $video = SVP::getInstance($url);
 
